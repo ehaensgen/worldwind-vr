@@ -29,7 +29,12 @@
 		</copy>			
 		<copy todir="dist/WorldWindVR/resources" overwrite="true">
 			<fileset dir="resources" includes="*"/>
-		</copy>		
+		</copy>
+		
+		
+		<copy todir="dist/WorldwindVR/jre1.7.0_71" overwrite="true">
+			<fileset dir="jre1.7.0_71"/>
+		</copy>
 		
 		<zip destfile="WorldWindVR-DK2.zip"
 		       basedir="dist"
