@@ -1,0 +1,60 @@
+<project name="worldwind-vr" basedir="." default="buildDistribution">
+	
+	<property name="classes.dir" value="bin"/>
+	<property name="src.dir" value="src"/>
+	<property name="debug" value="false"/>
+	<property name="launch4j.dir" location="C:\Program Files (x86)\Launch4j" />
+	
+	<!-- Builds a WorldWindVR distribution, although without an EXE (which requires installing launch4j, see buildWindowsDistributionWithExe)-->
+	<target name="buildDistribution" depends="export">
+		<delete dir="dist"/>
+		<mkdir dir="dist" />
+		<mkdir dir="dist/WorldWindVR" />
+		<mkdir dir="dist/WorldWindVR/lib" />
+		<mkdir dir="dist/WorldWindVR/native_libraries" />
+		<mkdir dir="dist/WorldWindVR/resources" />
+		<copy file="README" todir="dist/WorldWindVR" overwrite="true"/>	
+		<copy file="export/WorldwindVR.jar" todir="dist/WorldWindVR/lib" overwrite="true"/>	
+		<copy file="RunWorldwindVR.bat" todir="dist/WorldWindVR" overwrite="true"/>	
+		<copy file="RunWorldwindVR.sh" todir="dist/WorldWindVR" overwrite="true"/>
+		<copy file="locations.txt" todir="dist/WorldWindVR" overwrite="true"/>	
+		<copy file="jxinput.dll" todir="dist/WorldWindVR" overwrite="true"/>	
+		
+		<!-- copy all files in to the appropriate deployment directories -->
+		<copy todir="dist/WorldWindVR/lib" overwrite="true">
+			<fileset dir="lib" includes="*.jar"/>
+		</copy>	
+		<copy todir="dist/WorldWindVR/native_libraries" overwrite="true">
+			<fileset dir="native_libraries" />
+		</copy>			
+		<copy todir="dist/WorldWindVR/resources" overwrite="true">
+			<fileset dir="resources" includes="*"/>
+		</copy>		
+		
+		<zip destfile="WorldWindVR-DK2.zip"
+		       basedir="dist"
+		       update="true"
+		  />
+		<delete dir="dist"/>
+	</target>
+		
+	<!-- Export the WorldwindVR.jar -->
+	<target name="export" depends="compile">
+		<mkdir dir="export" />
+		<jar jarfile="export/WorldwindVR.jar">
+			<fileset dir="${classes.dir}" excludes="test/**" />
+		</jar>
+	</target>
+	
+	<path id="cp">
+		<fileset dir="lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="compile" description="Compile main sources.">
+		<mkdir dir="${classes.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" debug="${debug}" classpathref="cp" source="1.6" target="1.6" />
+	</target>
+
+</project>

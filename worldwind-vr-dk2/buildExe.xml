@@ -1,0 +1,24 @@
+<project name="worldwind-vr" basedir="." default="buildDistribution">
+	
+	<property name="classes.dir" value="bin"/>
+	<property name="src.dir" value="src"/>
+	<property name="debug" value="false"/>
+	<property name="launch4j.dir" location="C:\Program Files (x86)\Launch4j" />
+	
+	<!-- To use this, you will need to install launch4j and point the launch4j.dir property at it -->
+	<target name="addExeToDistAndRebuildZip">	
+		<copy file="launch4j/launch.cfg.xml" todir="dist/WorldWindVR" overwrite="true"/>
+		<launch4j configFile="./dist/WorldWindVR/launch.cfg.xml" />
+		<zip destfile="WorldWindVR.zip"
+		       basedir="dist"
+		       update="true"
+		  />
+	</target>
+		
+
+	<taskdef name="launch4j"
+	    classname="net.sf.launch4j.ant.Launch4jTask"
+	    classpath="${launch4j.dir}/launch4j.jar
+	        :${launch4j.dir}/lib/xstream.jar" />
+
+</project>
