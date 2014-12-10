@@ -23,10 +23,13 @@ Status  |         Description
 WorldwindVR is being developed in Eclipse, which can be downloaded at http://www.eclipse.org/downloads/
 
 *** Version Control ****
-The WorldwindVR project is hosted in Git.  Eclipse Juno comes prebuilt with the EGit plug-in.
+The WorldwindVR project is hosted in SVN on googlecode. The Subversive Eclipse plugin is available at http://eclipse.org/subversive/
 
-*** Checking out project from Git and installing as Eclipse project ***
-(1) Copy the following to clipboard: https://github.com/danielr2e/worldwind-vr.git
+*** Checking out project from SVN ***
+(1) svn checkout http://worldwind-vr.googlecode.com/svn/trunk/ worldwind-vr-read-only
+
+*** Installing as an Eclipse Project ***
+*needs updating*
 (2) Window -> Show View -> Other... -> Git -> Git Repositories
 (3) In the Git Repositories window, right click -> Paste Repository Path or URI
 (4) Enter your Git account credentials and check 'Store in Secure Store' -> Next -> Next -> Finish
