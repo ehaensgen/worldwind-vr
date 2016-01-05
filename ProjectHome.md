@@ -1,0 +1,1 @@
+Implementing 3D stereoscopy and interface enhancements for using Worldwind with the Oculus Rift VR device.
